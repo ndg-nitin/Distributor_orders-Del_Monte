@@ -1,0 +1,270 @@
+[
+    {
+        "sku": "DRINK-BACARDI-500ML",
+        "name": "Bacardi 500ml",
+        "brand": "Del Monte",
+        "mrp": 178,
+        "rate": 132,
+        "unit": "bottle",
+        "status": "active"
+    },
+    {
+        "sku": "DRINK-GREEN-APPLE-240ML",
+        "name": "Green Apple Juice 240ml",
+        "brand": "Del Monte",
+        "mrp": 50,
+        "rate": 32,
+        "unit": "can",
+        "status": "active"
+    },
+    {
+        "sku": "DRINK-LITCHI-ROSE-240ML",
+        "name": "Litchi Rose Juice 240ml",
+        "brand": "Del Monte",
+        "mrp": 60,
+        "rate": 32,
+        "unit": "can",
+        "status": "active"
+    },
+    {
+        "sku": "DRINK-PINEAPPLE-240ML",
+        "name": "Pineapple Juice 240ml",
+        "brand": "Del Monte",
+        "mrp": 50,
+        "rate": 32,
+        "unit": "can",
+        "status": "active"
+    },
+    {
+        "sku": "DRINK-PEACH-240ML",
+        "name": "Peach Juice 240ml",
+        "brand": "Del Monte",
+        "mrp": 50,
+        "rate": 32,
+        "unit": "can",
+        "status": "active"
+    },
+    {
+        "sku": "DRINK-MIX-FRUIT-240ML",
+        "name": "Mix Fruit Juice 240ml",
+        "brand": "Del Monte",
+        "mrp": 60,
+        "rate": 32,
+        "unit": "can",
+        "status": "active"
+    },
+    {
+        "sku": "DRINK-ALL-JUICE-MIX-240ML",
+        "name": "All Juice Mix 240ml",
+        "brand": "Del Monte",
+        "mrp": 50,
+        "rate": 33,
+        "unit": "can",
+        "status": "active"
+    },
+
+    {
+        "sku": "SAUCE-TOMATO-KETCHUP-900GM",
+        "name": "Tomato Ketchup 900gm",
+        "brand": "Del Monte",
+        "mrp": 90,
+        "rate": 68,
+        "unit": "pack",
+        "status": "active"
+    },
+    {
+        "sku": "SAUCE-TOMATO-KETCHUP-SACHET-8GMX100",
+        "name": "Tomato Ketchup Sachet 8gm x 100",
+        "brand": "Del Monte",
+        "mrp": 140,
+        "rate": 65,
+        "unit": "pack",
+        "status": "active"
+    },
+    {
+        "sku": "SAUCE-TOMATO-KETCHUP-450GM",
+        "name": "Tomato Ketchup 450gm",
+        "brand": "Del Monte",
+        "mrp": 51,
+        "rate": 42,
+        "unit": "pack",
+        "status": "active"
+    },
+    {
+        "sku": "SAUCE-TOMATO-KETCHUP-80GM",
+        "name": "Tomato Ketchup 80gm",
+        "brand": "Del Monte",
+        "mrp": 14,
+        "rate": 11.7,
+        "unit": "pack",
+        "status": "active"
+    },
+    {
+        "sku": "SAUCE-PIZZA-PASTA-100GM",
+        "name": "Pizza Pasta Sauce 100gm",
+        "brand": "Del Monte",
+        "mrp": 37,
+        "rate": 32,
+        "unit": "pack",
+        "status": "active"
+    },
+
+    {
+        "sku": "MAYO-TANDOORI-80GM",
+        "name": "Tandoori Mayo 80gm",
+        "brand": "Del Monte",
+        "mrp": 42,
+        "rate": 35,
+        "unit": "pack",
+        "status": "active"
+    },
+    {
+        "sku": "MAYO-EGGLESS-850GM",
+        "name": "Eggless Mayo 850gm",
+        "brand": "Del Monte",
+        "mrp": 159,
+        "rate": 125,
+        "unit": "pack",
+        "status": "active"
+    },
+    {
+        "sku": "MAYO-SANDWICH-80GM",
+        "name": "Sandwich Mayo 80gm",
+        "brand": "Del Monte",
+        "mrp": 37,
+        "rate": 31,
+        "unit": "pack",
+        "status": "active"
+    },
+    {
+        "sku": "MAYO-EGGLESS-80GM",
+        "name": "Eggless Mayo 80gm",
+        "brand": "Del Monte",
+        "mrp": 37,
+        "rate": 31,
+        "unit": "pack",
+        "status": "active"
+    },
+
+    {
+        "sku": "PASTA-CHIFFERI-400GM",
+        "name": "Pasta Chifferi 400gm",
+        "brand": "Del Monte",
+        "mrp": 178,
+        "rate": 62,
+        "unit": "pack",
+        "status": "active"
+    },
+    {
+        "sku": "PASTA-SPIRALY-400GM",
+        "name": "Pasta Spiraly 400gm",
+        "brand": "Del Monte",
+        "mrp": 178,
+        "rate": 62,
+        "unit": "pack",
+        "status": "active"
+    },
+    {
+        "sku": "PASTA-PENNE-400GM",
+        "name": "Pasta Penne 400gm",
+        "brand": "Del Monte",
+        "mrp": 178,
+        "rate": 62,
+        "unit": "pack",
+        "status": "active"
+    },
+
+    {
+        "sku": "DATES-ARABIAN-200GM",
+        "name": "Arabian Dates 200gm",
+        "brand": "Del Monte",
+        "mrp": 164,
+        "rate": 66,
+        "unit": "pack",
+        "status": "out_of_stock"
+    },
+    {
+        "sku": "DATES-FARD-200GM",
+        "name": "Fard Dates 200gm",
+        "brand": "Del Monte",
+        "mrp": 280,
+        "rate": 111,
+        "unit": "pack",
+        "status": "out_of_stock"
+    },
+    {
+        "sku": "DATES-ZAHIDI-450GM",
+        "name": "Zahidi Dates 450gm",
+        "brand": "Del Monte",
+        "mrp": 290,
+        "rate": 116,
+        "unit": "pack",
+        "status": "active"
+    },
+
+    {
+        "sku": "OLIVE-BLACK-SLICES-235GM",
+        "name": "Black Olive Slices 235gm",
+        "brand": "Del Monte",
+        "mrp": 196,
+        "rate": 154,
+        "unit": "jar",
+        "status": "active"
+    },
+    {
+        "sku": "OLIVE-GREEN-SLICES-235GM",
+        "name": "Green Olive Slices 235gm",
+        "brand": "Del Monte",
+        "mrp": 196,
+        "rate": 154,
+        "unit": "jar",
+        "status": "out_of_stock"
+    },
+    {
+        "sku": "OLIVE-BLACK-SLICES-450GM",
+        "name": "Black Olive Slices 450gm",
+        "brand": "Del Monte",
+        "mrp": 360,
+        "rate": 283,
+        "unit": "jar",
+        "status": "active"
+    },
+
+    {
+        "sku": "CANNED-PINEAPPLE-SLICES-439GM",
+        "name": "Pineapple Slices 439gm",
+        "brand": "Del Monte",
+        "mrp": 180,
+        "rate": 145,
+        "unit": "can",
+        "status": "active"
+    },
+    {
+        "sku": "CANNED-FRUIT-COCKTAIL-439GM",
+        "name": "Fruit Cocktail 439gm",
+        "brand": "Del Monte",
+        "mrp": 185,
+        "rate": 150,
+        "unit": "can",
+        "status": "active"
+    },
+
+    {
+        "sku": "OIL-PURE-OLIVE-100ML",
+        "name": "Pure Olive Oil 100ml",
+        "brand": "Del Monte",
+        "mrp": 150,
+        "rate": 112,
+        "unit": "bottle",
+        "status": "active"
+    },
+    {
+        "sku": "OIL-OLIVE-250ML",
+        "name": "Olive Oil 250ml",
+        "brand": "Del Monte",
+        "mrp": 749,
+        "rate": 306,
+        "unit": "bottle",
+        "status": "active"
+    }
+]

@@ -1,0 +1,22 @@
+[
+    {
+        "id": "STORE001",
+        "name": "Gupta kirana & General Store",
+        "owner": "Raju Gupta",
+        "mobile": "9860787485",
+        "address": "Belavli, Badlapur West",
+        "area": "Belavli",
+        "latitude": null,
+        "longitude": null
+    },
+    {
+        "id": "STORE002",
+        "name": "Jay Bhavani Chana Kirana",
+        "owner": "Nikhil Gupta",
+        "mobile": "8237373840",
+        "address": "Datta Chowk, near Datta mandir Badlapur",
+        "area": "Datta Chowk",
+        "latitude": null,
+        "longitude": null
+    }
+]

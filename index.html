@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#1976d2">
+
+    <meta
+        name="description"
+        content="Offline Distributor Order Management PWA"
+    >
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Distributor Orders</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#1976d2">
+    <link rel="icon" type="image/png" href="./assets/icons/launchericon-48x48.png">
+</head>
+
+<body>
+
+<header class="app-header">
+    <div>
+        <h1>Distributor Orders</h1>
+        <span id="connectionStatus">Checking...</span>
+    </div>
+</header>
+
+
+<main class="app-container">
+
+    <!-- ========================= -->
+    <!-- DASHBOARD -->
+    <!-- ========================= -->
+
+    <section id="dashboardScreen" class="screen active">
+
+        <div class="dashboard-grid">
+
+            <button
+                class="dashboard-card primary"
+                onclick="startNewOrder()"
+            >
+                <span class="dashboard-icon">🛒</span>
+                <strong>New Order</strong>
+                <small>Create a new order</small>
+            </button>
+
+            <button
+                class="dashboard-card"
+                onclick="showScreen('storesScreen')"
+            >
+                <span class="dashboard-icon">🏪</span>
+                <strong>Stores</strong>
+                <small id="dashboardStoreCount">0 stores</small>
+            </button>
+
+            <button
+                class="dashboard-card"
+                onclick="showScreen('productsScreen')"
+            >
+                <span class="dashboard-icon">📦</span>
+                <strong>Products</strong>
+                <small id="dashboardProductCount">0 products</small>
+            </button>
+
+            <button
+                class="dashboard-card"
+                onclick="showScreen('ordersScreen')"
+            >
+                <span class="dashboard-icon">📋</span>
+                <strong>Orders</strong>
+                <small id="dashboardOrderCount">0 orders</small>
+            </button>
+
+            <button
+                class="dashboard-card"
+                onclick="showScreen('backupScreen')"
+            >
+                <span class="dashboard-icon">💾</span>
+                <strong>Backup</strong>
+                <small>Export / Import</small>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- PRODUCTS -->
+    <!-- ========================= -->
+
+    <section id="productsScreen" class="screen">
+
+        <div class="screen-header">
+
+            <button
+                class="back-button"
+                onclick="showScreen('dashboardScreen')"
+            >
+                ←
+            </button>
+
+            <div>
+                <h2>Products</h2>
+                <p>Product master</p>
+            </div>
+
+            <div>
+                <button id="refreshProductsBtn" class="header-action" type="button">
+                    Refresh Products
+                </button>
+            </div>
+
+        </div>
+
+        <div id="productSyncStatus"></div>
+
+        <div class="search-box">
+
+            <input
+                type="search"
+                id="productSearch"
+                placeholder="Search product..."
+                autocomplete="off"
+            >
+
+        </div>
+
+        <div id="productsList"></div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- STORES -->
+    <!-- ========================= -->
+
+    <section id="storesScreen" class="screen">
+
+        <div class="screen-header">
+
+            <button
+                class="back-button"
+                onclick="showScreen('dashboardScreen')"
+            >
+                ←
+            </button>
+
+            <div>
+                <h2>Stores</h2>
+                <p>Manage registered stores</p>
+            </div>
+
+            <button
+                class="header-action"
+                onclick="openStoreForm()"
+            >
+                + Add
+            </button>
+
+        </div>
+
+        <div class="search-box">
+
+            <input
+                type="search"
+                id="storeSearch"
+                placeholder="Search store..."
+                autocomplete="off"
+            >
+
+        </div>
+
+        <div id="storesList"></div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- STORE FORM -->
+    <!-- ========================= -->
+
+    <section id="storeFormScreen" class="screen">
+
+        <div class="screen-header">
+
+            <button
+                class="back-button"
+                onclick="cancelStoreForm()"
+            >
+                ←
+            </button>
+
+            <div>
+
+                <h2 id="storeFormTitle">
+                    Add Store
+                </h2>
+
+                <p>
+                    Store information
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form id="storeForm">
+
+            <input
+                type="hidden"
+                id="storeFormId"
+            >
+
+
+            <div class="form-group">
+
+                <label for="storeName">
+                    Store Name *
+                </label>
+
+                <input
+                    type="text"
+                    id="storeName"
+                    required
+                    placeholder="Store name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="storeAddress">
+                    Address *
+                </label>
+
+                <textarea
+                    id="storeAddress"
+                    required
+                    placeholder="Full address"
+                    rows="3"
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="storeArea">
+                    Area
+                </label>
+
+                <input
+                    type="text"
+                    id="storeArea"
+                    placeholder="Area / locality"
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="storeOwner">
+                        Owner Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="storeOwner"
+                        placeholder="Optional"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="storeMobile">
+                        Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="storeMobile"
+                        placeholder="Optional"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- STORE LOCATION -->
+
+            <div class="location-box">
+
+                <div class="location-title">
+
+                    <strong>
+                        📍 Store Location
+                    </strong>
+
+                    <span id="storeLocationStatus">
+                        Not captured
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="storeCoordinates"
+                    class="coordinates"
+                >
+                    No location saved
+                </div>
+
+
+                <button
+                    type="button"
+                    class="secondary-button full-width"
+                    onclick="captureStoreLocation()"
+                >
+                    📍 Capture Current Location
+                </button>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Save Store
+                </button>
+
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    onclick="cancelStoreForm()"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- NEW ORDER -->
+    <!-- ========================= -->
+
+    <section id="newOrderScreen" class="screen">
+
+        <div class="screen-header">
+
+            <button
+                class="back-button"
+                onclick="showScreen('dashboardScreen')"
+            >
+                ←
+            </button>
+
+            <div>
+
+                <h2 id="newOrderTitle">
+                    New Order
+                </h2>
+
+                <p id="newOrderSubtitle">
+                    Create order
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- STORE -->
+        <!-- ========================= -->
+
+        <div class="section-card">
+
+            <div class="section-title-row">
+
+                <div>
+                    <strong>Store</strong>
+
+                    <small>
+                        Select an existing store or use a temporary store
+                    </small>
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- EXISTING STORE SELECTOR -->
+            <!-- ========================= -->
+
+            <div id="registeredStoreSelector">
+
+                <!-- <label for="orderStoreSearch">
+                    <strong>Select Existing Store</strong>
+                </label> -->
+
+                <input
+                    type="search"
+                    id="orderStoreSearch"
+                    placeholder="Search store..."
+                    autocomplete="off"
+                >
+
+                <div
+                    id="orderStoreResults"
+                    class="search-results"
+                ></div>
+
+
+                <div class="order-store-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="openAddStoreFromOrder()"
+                    >
+                        + New Store
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="startTemporaryStore()"
+                    >
+                        + Temporary Store
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- SELECTED REGISTERED STORE -->
+            <!-- ========================= -->
+
+            <div
+                id="selectedStoreCard"
+                class="hidden selected-store-card"
+            ></div>
+
+
+            <!-- ========================= -->
+            <!-- TEMPORARY STORE -->
+            <!-- ========================= -->
+
+            <div
+                id="oneTimeStoreForm"
+                class="hidden"
+            >
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <strong>
+                            Temporary Store
+                        </strong>
+
+                        <small>
+                            This store will only be used for this order
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="cancelTemporaryStore()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="orderStoreName">
+                        Store Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="orderStoreName"
+                        placeholder="Store name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="orderStoreAddress">
+                        Address *
+                    </label>
+
+                    <textarea
+                        id="orderStoreAddress"
+                        placeholder="Delivery address"
+                        rows="3"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="orderStoreArea">
+                        Area
+                    </label>
+
+                    <input
+                        type="text"
+                        id="orderStoreArea"
+                        placeholder="Area"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="orderStoreOwner">
+                        Owner Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="orderStoreOwner"
+                        placeholder="Owner name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="orderStoreMobile">
+                        Mobile
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="orderStoreMobile"
+                        placeholder="Mobile number"
+                    >
+
+                </div>
+
+
+                <!-- TEMPORARY STORE LOCATION -->
+
+                <div
+                    id="oneTimeOrderLocation"
+                    class="location-box"
+                ></div>
+
+
+                <label class="checkbox-row">
+
+                    <input
+                        type="checkbox"
+                        id="saveOneTimeStore"
+                    >
+
+                    <span>
+                        Save this store permanently
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- REGISTERED STORE LOCATION -->
+        <!-- ========================= -->
+
+        <div
+            id="registeredStoreLocationBox"
+            class="section-card hidden"
+        >
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <strong>
+                        📍 Delivery Location
+                    </strong>
+
+                    <small>
+                        Location used for this order
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="registeredOrderCoordinates"
+                class="coordinates"
+            >
+                No location saved
+            </div>
+
+
+            <div class="button-row">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    onclick="captureOrderLocation()"
+                >
+                    📍 Use Current Location
+                </button>
+
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    onclick="updateSelectedStoreLocation()"
+                >
+                    Update Store Location
+                </button>
+
+            </div>
+
+
+            <label class="checkbox-row">
+
+                <input
+                    type="checkbox"
+                    id="saveLocationToStore"
+                    checked
+                >
+
+                <span>
+                    Save new location to store when captured
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- PRODUCTS -->
+        <!-- ========================= -->
+
+        <div class="section-card">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <strong>
+                        Add Products
+                    </strong>
+
+                    <small>
+                        Search and add products
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <input
+                type="search"
+                id="orderProductSearch"
+                class="search-input"
+                placeholder="Search product..."
+                autocomplete="off"
+            >
+
+
+            <div id="orderProductResults"></div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- ORDER ITEMS -->
+        <!-- ========================= -->
+
+        <div class="section-card">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <strong>
+                        Order Items
+                    </strong>
+
+                    <small id="orderItemCount">
+                        0 items
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div id="orderItems">
+
+                <div class="empty-state">
+                    No products added yet.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- NOTES -->
+        <!-- ========================= -->
+
+        <div class="section-card">
+
+            <div class="form-group">
+
+                <label for="orderNotes">
+                    Notes
+                </label>
+
+                <textarea
+                    id="orderNotes"
+                    rows="3"
+                    placeholder="Optional delivery/order notes"
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- TOTAL -->
+        <!-- ========================= -->
+
+        <div class="order-total-card">
+
+            <div>
+
+                <span>
+                    Total Items
+                </span>
+
+                <strong id="orderTotalItems">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Total Amount
+                </span>
+
+                <strong>
+                    ₹<span id="orderTotalAmount">0.00</span>
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- SAVE ORDER -->
+        <!-- ========================= -->
+
+        <button
+            type="button"
+            class="primary-button full-width save-order-button"
+            onclick="saveCurrentOrder()"
+        >
+            Save Order
+        </button>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- ORDERS -->
+    <!-- ========================= -->
+
+    <section id="ordersScreen" class="screen">
+
+        <div class="screen-header">
+
+            <button
+                class="back-button"
+                onclick="showScreen('dashboardScreen')"
+            >
+                ←
+            </button>
+
+            <div>
+
+                <h2>Orders</h2>
+
+                <p>
+                    Order history
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div id="ordersList"></div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- BACKUP -->
+    <!-- ========================= -->
+
+    <section id="backupScreen" class="screen">
+
+        <div class="screen-header">
+
+            <button
+                class="back-button"
+                onclick="showScreen('dashboardScreen')"
+            >
+                ←
+            </button>
+
+            <div>
+
+                <h2>Backup</h2>
+
+                <p>
+                    Export or restore data
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="section-card">
+
+            <h3>
+                Export Backup
+            </h3>
+
+            <p class="help-text">
+                Creates a JSON backup containing your products,
+                stores and orders.
+            </p>
+
+
+            <button
+                class="primary-button full-width"
+                onclick="exportBackup()"
+            >
+                ⬇ Export Backup
+            </button>
+
+        </div>
+
+
+        <div class="section-card">
+
+            <h3>
+                Import Backup
+            </h3>
+
+            <p class="help-text">
+                Import a previously exported backup.
+                Existing records will not be deleted.
+            </p>
+
+
+            <input
+                type="file"
+                id="backupFile"
+                accept=".json,application/json"
+                hidden
+                onchange="importBackup(event)"
+            >
+
+
+            <button
+                class="secondary-button full-width"
+                onclick="document.getElementById('backupFile').click()"
+            >
+                ⬆ Import Backup
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ========================= -->
+<!-- ORDER SAVED MODAL -->
+<!-- ========================= -->
+
+<div
+    id="orderSavedModal"
+    class="modal hidden"
+>
+
+    <div class="modal-content">
+
+        <h2>
+            Order Saved
+        </h2>
+
+
+        <p id="savedOrderNumber"></p>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="primary-button full-width"
+                onclick="whatsappSavedOrder()"
+            >
+                WhatsApp Order
+            </button>
+
+
+            <button
+                class="secondary-button full-width"
+                onclick="copySavedOrder()"
+            >
+                Copy Order
+            </button>
+
+
+            <button
+                class="secondary-button full-width"
+                onclick="closeOrderSavedModal()"
+            >
+                Done
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- SCRIPTS -->
+<!-- ========================= -->
+
+<script src="js/dexie.min.js"></script>
+<script src="js/database.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
